@@ -38,7 +38,7 @@ import javafx.stage.*;
 
                     result.setText(String.format("Your BMI is: %.2f", bmi));
                     
-                } catch (Exception e) {
+                } catch (NumberFormatException ex) {
 
                     result.setText(String.format("Insert valid informations"));
                 }
