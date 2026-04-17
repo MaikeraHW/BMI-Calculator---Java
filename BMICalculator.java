@@ -28,15 +28,34 @@ import javafx.stage.*;
             Button calculate = new Button("Calculate");
 
             
+
+            
             calculate.setOnAction( e -> {
 
                 try {
-                    double weightValue = Double.parseDouble(weightField.getText());
-                    double heightValue = Double.parseDouble(heightField.getText());
+                    double weightValue = Double.parseDouble(weightField.getText().replace(',' , '.'));
+                    double heightValue = Double.parseDouble(heightField.getText().replace(',' , '.'));
 
                     double bmi = weightValue / (heightValue * heightValue);
+                    String phrase;
 
-                    result.setText(String.format("Your BMI is: %.2f", bmi));
+                        if (bmi < 18.5) {
+                            phrase = "underweight";
+                        } else if (bmi >= 18.5 && bmi < 25){
+                            phrase = "Healthy Weight";
+                        } else if (bmi >= 25 && bmi < 30){
+                            phrase = "Overweight";
+                        } else if (bmi >= 30 && bmi < 35){
+                            phrase = "Obese Class 1";
+                        } else if (bmi >= 35 && bmi < 40){
+                            phrase = "Obese Class 2";
+                        } else {
+                            phrase = "Obese Class 3";
+                        }
+
+
+
+                    result.setText(String.format("Your BMI is: %.2f" + " - " + phrase, bmi));
                     
                 } catch (NumberFormatException ex) {
 
